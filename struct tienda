@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+struct Producto{
+    string nombre;
+    int precio;
+};
+struct Clase{
+    Producto product;
+    string categoria;
+};
+int main() {
+    int cont, prod;
+    cout<<"Ingresar el numero de productos: ";
+    cin>>cont;
+    Clase *cateaux=new Clase[cont];
+    for(int i=0;i<cont;i++){
+        cout<<"Ingresar el producto "<<i+1<<": ";
+        cin>>cateaux[i].product.nombre;
+        cout<<"Ingresar su precio: ";
+        cin>>cateaux[i].product.precio;
+        cout<<"Ingresar su categoria: ";
+        cin>>cateaux[i].categoria;
+    }
+    cout<<"Ingresar el numero de un producto: ";
+    cin>>prod;
+    cout<<cateaux[prod-1].product.nombre<<" "<<cateaux[prod-1].product.precio<<"$ "<<cateaux[prod-1].categoria;
+    return 0;
+}
