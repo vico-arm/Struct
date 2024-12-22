@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void Menu(){
+    cout<<"Menu de opciones"<<endl;
+    cout<<"1. Lista de Nombres"<<endl;
+    cout<<"2. Personas de determinadad edad"<<endl;
+    cout<<"3. Personas con determinada inicial"<<endl;
+    cout<<"4. Salir del programa"<<endl;
+}
+struct Persona{
+    string nombre;
+    string dirección;
+    string telefono;
+    int edad;
+};
+int main() {
+    int cont=0;
+    cout<<"Datos personales"<<endl;
+    Persona *person=new Persona[50];
+    for(int i=0;i<50;i++){
+        cout<<"Ingresar el nombre de la persona "<<i+1<<": ";
+        if(i==0){cout<<"\nagregar un . antes del nombre de la primera persona: ";}
+        cin.ignore();
+        getline(cin,person[i].nombre);
+        if (person[i].nombre == "") {
+            cout << "Ingresado un nombre vacío, terminando el ingreso de datos" << endl;
+            break;
+        }else{
+         cout<<"Ingresar su dirección: ";
+         getline(cin,person[i].dirección);
+         cout<<"Ingresar su numero de telefono: ";
+         getline(cin,person[i].telefono);
+         cout<<"Ingresar su edad: ";
+         cin>>person[i].edad;
+         cont++;
+        }
+    }
+    int opción=0;
+    int edad, ialt;
+    char inicial;
+    do{
+      Menu();
+      cin>>opción;
+      switch(opción){
+          case 1:
+          for(int i=0;i<cont;i++){
+              cout<<i+1<<".- "<<person[i].nombre<<endl;
+          }
+          break;
+          case 2:
+          ialt=0;
+          cout<<"Ingresar la edad deseada: ";
+          cin>>edad;
+          for(int i=0;i<cont;i++){
+              if(person[i].edad==edad){
+                  cout<<ialt+1<<".- "<<person[i].nombre<<endl;
+                  ialt++;
+              }
+          }
+          break;
+          case 3:
+          ialt=0;
+          cout<<"Ingrese la inicial deseada: ";
+          cin>>inicial;
+          for(int i=0;i<cont;i++){
+              if(person[i].nombre[0]==inicial){
+                  cout<<ialt+1<<".- "<<person[i].nombre<<endl;
+                  ialt++;
+              }
+          }
+          break;
+          case 4:
+          cout<<"Saliendo del programa";
+          return 0;
+        }
+    }while(opción != 4);
+}
